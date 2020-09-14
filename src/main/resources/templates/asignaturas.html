@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Boot Exemple</title>
+
+
+</head>
+<body>
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/asignatura}">Home</a></li>
+                        <li><a href="#" th:href="@{/asignatura/new}">Create new asignatura</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+   </div>
+</div>
+
+
+<div class="container">
+ 
+    <div th:if="${not #lists.isEmpty(asignaturas)}">
+        <h2>Asignatura List</h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th>Name</th>
+                <th>Price</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="asignatura : ${asignaturas}">
+                <td th:text="${asignatura.nombre}">descirption</td>
+                <td><a th:href="${ '/asignatura/' + asignatura.id}">View</a></td>
+                <td><a th:href="${'/asignatura/edit/' + asignatura.id}">Edit</a></td>
+                <td><a th:href="${'/asignatura/delete/' + asignatura.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
